@@ -2,7 +2,7 @@
 
 ## Questions:
 
-* How do we organise read?
+* How do we organise sequencing data?
     * Illumina reads have labels for each read (e.g. _1 and _2)
     * Do we store them in the same directory with standard labels?
     * Does each unit create their own script to create the samplesheet.csv?
@@ -11,6 +11,8 @@
 * Do we provide GenomeSize or basecalling model ?
 
 ## Install BACASS
+
+TBD
 
 ## Prepare SampleSheet
 
