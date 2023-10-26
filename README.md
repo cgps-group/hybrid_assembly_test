@@ -1,4 +1,6 @@
-# Questions:
+# Testing hybrid assembly tools
+
+## Questions:
 
 * How do we organise sequencing data?
     * Illumina reads have labels for each read (e.g. _1 and _2)
@@ -8,19 +10,19 @@
     * We could get all genomes in directory with long and short reads
 * Do we provide GenomeSize or basecalling model ?
 
-# 1. BACASS Assembly
+## A. BACASS Assembly
 
-## Install BACASS
+### 1. Install BACASS
 
-### Nextflow
+#### Nextflow
 
 Install as insctructed in [www.nextflow.io](https://www.nextflow.io/docs/latest/getstarted.html)
 
-### nf-core
+#### nf-core
 
 Check [https://nf-co.re](https://nf-co.re/docs/usage/tutorials/nf_core_usage_tutorial#installing-the-nf-core-helper-tools) for any additional help.
 
-## Prepare SampleSheet
+### 2. Prepare SampleSheet
 
 Sample sheet required for the pipeline `samplesheet.csv` for hybrid assembly
 
@@ -32,7 +34,7 @@ Sample sheet required for the pipeline `samplesheet.csv` for hybrid assembly
 
 
 
-## Run BACASS
+### 3. Run BACASS
 
 ```
 GENUS=Staphylococcus Aureus
@@ -41,10 +43,10 @@ nextflow run nf-core/bacass --input samplesheet.csv -profile docker -resume  --o
 ```
 
 
-# 2. Dragonflye Assembly
+## B. Dragonflye Assembly
 
 
-## Install DragonFlye
+### 1. Install DragonFlye
 
 Install the Dragonflye following [the official repo](https://github.com/rpetit3/dragonflye):
 
@@ -56,9 +58,9 @@ conda activate dragonflxye
 ```
 
 
-## Run DragonFlye
+### 2. Run DragonFlye
 
-### Running dragonflye individually
+#### Running dragonflye individually
 
 ```
 dragonflye  --gsize 2.8M --R1  /path/to/G18252286_1.fastq.gz  --R2 /path/to/G18252286_2.fastq.gz  --reads /path/to/G18252287.fastq.gz --cpus 32 --ram 128 --prefix G18252287 --medaka 1 --model r941_min_sup_g507 --outdir dragonflye_out/G18252287 --force
@@ -71,29 +73,22 @@ Change the --model to as per the guppy base-calling performed.
 
 
 
-### Running the dragonflye in batch mode using the bash script
+#### Running the dragonflye in batch mode
 
 
-Clone the repository containing the bash script to run the dragonflye
+Clone the repository containing the bash script to run dragonflye in batch
+
+
+```bash
 git clone https://github.com/varunshamanna/dragonflye_bash_pipeline.git
+```
+
+> Edit the dragonflye_pipeline.sh to change the genome size and other default parameters.
 
 
-Edit the dragonflye_pipeline.sh to change the genome size and other default parameters.
-
-
-The script takes 4 inputs from the user to run the dragonflye assembler: 
--l a folder containing nanopore reads
--s a folder containing short reads
--i a text file having ids for which the assembly has to be performed
--o output folder name
-
-
+```bash
 bash dragonflye_pipeline.sh -l long_fastqs/ -s short_fastqs/ -o dragonflye_out/ -i ids
-
-
-
-The script will look for ID_R1.fastq.gz and ID_R2.fastq.gz files from the short_fastqs folder and ID.fastq.gz from the long_reads folder for each ID in the ids file provided and run dragonflye.
-
+```
 
 
 ## Metrics to Report
