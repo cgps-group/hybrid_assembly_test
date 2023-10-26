@@ -1,6 +1,4 @@
-# 1. BACASS Assembly
-
-## Questions:
+# Questions:
 
 * How do we organise sequencing data?
     * Illumina reads have labels for each read (e.g. _1 and _2)
@@ -10,19 +8,27 @@
     * We could get all genomes in directory with long and short reads
 * Do we provide GenomeSize or basecalling model ?
 
+# 1. BACASS Assembly
+
 ## Install BACASS
 
-TBD
+### Nextflow
+
+Install as insctructed in [www.nextflow.io](https://www.nextflow.io/docs/latest/getstarted.html)
+
+### nf-core
+
+Check [https://nf-co.re](https://nf-co.re/docs/usage/tutorials/nf_core_usage_tutorial#installing-the-nf-core-helper-tools) for any additional help.
 
 ## Prepare SampleSheet
 
 Sample sheet required for the pipeline `samplesheet.csv` for hybrid assembly
 
 
-| ID        | R1                            | R2                            | LongFastQ                   | Fast5 | GenomeSize |
-|-----------|-------------------------------|-------------------------------|-----------------------------|-------|------------|
-| G18252286 | /path/to/G18252286_1.fastq.gz | /path/to/G18252286_2.fastq.gz | /path/to/G18252286.fastq.gz | NA    | 2.8m       |
-| G18252287 | /path/to/G18252287_1.fastq.gz | /path/to/G18252287_2.fastq.gz | /path/to/G18252287.fastq.gz | NA    | 2.8m       |
+| ID  | R1                        | R2                        | LongFastQ               | Fast5 | GenomeSize |
+|-----|---------------------------|---------------------------|-------------------------|-------|------------|
+| IDA | `/path/to/IDA_1.fastq.gz` | `/path/to/IDA_2.fastq.gz` | `/path/to/IDA.fastq.gz` | NA    | 2.8m       |
+| IDB | `/path/to/IDB_1.fastq.gz` | `/path/to/IDB_2.fastq.gz` | `/path/to/IDB.fastq.gz` | NA    | 2.8m       |
 
 
 
@@ -40,11 +46,13 @@ nextflow run nf-core/bacass --input samplesheet.csv -profile docker -resume  --o
 
 ## Install DragonFlye
 
-Install the Dragonflye using the command and activate the environment:
+Install the Dragonflye following [the official repo](https://github.com/rpetit3/dragonflye):
+
+I suggest using [mamba](https://mamba.readthedocs.io/en/latest/).
 
 ```
-conda create -n dragonflye -c conda-forge -c bioconda dragonflye
-conda activate dragonflye
+mamba create -n dragonflye -c conda-forge -c bioconda dragonflye
+conda activate dragonflxye
 ```
 
 
@@ -85,3 +93,16 @@ bash dragonflye_pipeline.sh -l long_fastqs/ -s short_fastqs/ -o dragonflye_out/ 
 
 
 The script will look for ID_R1.fastq.gz and ID_R2.fastq.gz files from the short_fastqs folder and ID.fastq.gz from the long_reads folder for each ID in the ids file provided and run dragonflye.
+
+
+
+## Metrics to Report
+
+for julio: create form to submit results
+
+* Num. of circulirised contigs
+* N50
+* GC % (chromosome / plasmid)?
+* Taxonomy
+* ST 
+* Read Length / Read Coverage
