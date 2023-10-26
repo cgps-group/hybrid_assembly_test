@@ -66,11 +66,7 @@ conda activate dragonflxye
 dragonflye  --gsize 2.8M --R1  /path/to/G18252286_1.fastq.gz  --R2 /path/to/G18252286_2.fastq.gz  --reads /path/to/G18252287.fastq.gz --cpus 32 --ram 128 --prefix G18252287 --medaka 1 --model r941_min_sup_g507 --outdir dragonflye_out/G18252287 --force
 ```
 
-
-
 Change the --model to as per the guppy base-calling performed.
-
-
 
 
 #### Running the dragonflye in batch mode
@@ -91,9 +87,9 @@ bash dragonflye_pipeline.sh -l long_fastqs/ -s short_fastqs/ -o dragonflye_out/ 
 ```
 
 
-## Metrics to Report
+## C. Metrics to Report
 
-for julio: create form to submit results
+Please report your output metrics by modifying [report.csv](https://github.com/cgps-group/hybrid_assembly_test/blob/main/report.csv) and creating a pull request.
 
 * Num. of circulirised contigs
 * N50
@@ -101,3 +97,5 @@ for julio: create form to submit results
 * Taxonomy
 * ST 
 * Read Length / Read Coverage
+
+##### Initially developed by Varun Shamana and Julio Diaz Caballero
