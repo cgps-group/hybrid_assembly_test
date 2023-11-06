@@ -1,14 +1,31 @@
 # Testing hybrid assembly tools
 
-## Questions:
 
-* How do we organise sequencing data?
-    * Illumina reads have labels for each read (e.g. _1 and _2)
-    * Do we store them in the same directory with standard labels?
-    * Does each unit create their own script to create the samplesheet.csv?
-* Do we provide a sample ID list?
-    * We could get all genomes in directory with long and short reads
-* Do we provide GenomeSize or basecalling model ?
+## 0. Getting the data:
+
+For these tests, you will need to get the data from a digital ocean server.
+
+You can access the server using the following credentials (I will share the password via slack):
+
+```
+username: angela_col
+password: shared in slack
+host:104.248.164.189 
+path: /media/storage
+```
+
+For example, you may be able to retrieve the data from the server using `scp`
+
+```
+scp -r angela_col@104.248.164.189:/media/storage .
+```
+
+The files are labeled as:
+
+```
+{UNIT}-{SPECIES}-{SAMPLE_ID}-{TECHNOLOGY}{-R1 or R2 for illumina}.fastq.gz
+```
+
 
 ## A. BACASS Assembly
 
